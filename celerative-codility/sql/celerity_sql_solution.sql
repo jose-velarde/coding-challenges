@@ -5,7 +5,7 @@ FROM (
       player_id,
       ROW_NUMBER() OVER (
         PARTITION BY group_id
-        ORDER BY group_id
+        ORDER BY SUM(score) DESC, player_id
       ) AS row_number,
       SUM(score) AS total_score
     FROM (
